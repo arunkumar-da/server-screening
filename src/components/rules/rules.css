@@ -1,0 +1,188 @@
+.rules-card {
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  height: 598px;
+  width: 1300px;
+  margin-top: 8%;
+}
+
+@media (max-width: 1300px) {
+  .rules-card {
+    width: 95%;
+  }
+}
+
+@media (max-width: 992px) {
+  .rules-card {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rules-card {
+    width: 95%;
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .rules-card {
+    margin-top: 30%;
+    height: auto;
+    min-height: 1550px;
+    width: 95%;
+    border-radius: 30px;
+    padding: 10px;
+  }
+}
+
+.text {
+  margin-left: 4%;
+  margin-top: -40px;
+}
+
+.detail {
+  margin-left: 20%;
+  margin-top: -50px;
+}
+
+.a, .b, .c, .d {
+  margin-top: 3%;
+}
+
+.div {
+  width: 430px;
+  border-width: 20ch;
+  border-color: #143D64;
+}
+
+@media (max-width: 992px) {
+  .div {
+    width: 100%;
+    max-width: 430px;
+  }
+}
+
+@media (max-width: 576px) {
+  .div {
+    width: 100%;
+  }
+}
+
+.rh {
+  margin-left: 30%;
+  margin-top: -363px;
+}
+
+.rp {
+  margin-left: 30%;
+  margin-top: -10px;
+}
+
+.r2 {
+  margin-left: 30%;
+  margin-top: 0px;
+}
+
+.pl {
+  margin-left: 30%;
+  color: #FF5733;
+}
+
+.pr2 {
+  color: #FF5733;
+  margin-left: 60%;
+  margin-top: -70px;
+}
+
+.pr1 {
+  margin-left: 60%;
+  margin-top: -40px;
+  color: #FF5733;
+}
+
+.r3 {
+  margin-left: 30%;
+  margin-top: 50px;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #143D64;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  margin-left: 30%;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+@media (max-width: 992px) {
+  .text, .detail, .a, .b, .c, .d, .rh, .rp, .r2, .r3, .pl, .pr1, .pr2 {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .detail {
+    margin-top: 20px;
+  }
+
+  .rh {
+    margin-top: 20px;
+  }
+
+  .button {
+    margin-left: 5%;
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .pr1, .pr2 {
+    margin-left: 5%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .text, .detail, .a, .b, .c, .d, .rh, .rp, .r2, .r3, .pl, .pr1, .pr2 {
+    margin-left: 9%;
+    margin-right: 3%;
+  }
+
+  .button {
+    margin-left: 3%;
+    width: 94%;
+  }
+}
+
+@media (max-width: 576px) {
+  .image {
+    margin-left: -223px;
+  }
+  .rh {
+    margin-top: -11px;
+  }
+  .pr1, .pr2 {
+    margin-top: 7%;
+  }
+}

@@ -1,0 +1,238 @@
+.whitecard {
+  background-color: rgba(217, 217, 217, 0.16);
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  height: 738px;
+  margin-top: 12%;
+  width: 758px;
+}
+@media (min-width: 992px) {
+  .whitecard {
+    height: 700px;
+    margin-top: 8%;
+    width: 50%; /* Adjusted height for laptop view */
+  }
+}
+@media (max-width: 768px) {
+  .whitecard {
+    height: 500px; /* Adjust height for tablet view */
+    width: 90%; /* Adjust width for tablet view */
+  }
+}
+@media(max-width:576px){
+  .beautiful-button{
+    margin-top: 10%;
+    margin-left: 28%;
+  }
+}
+@media (max-width: 576px) {
+  .whitecard {
+    margin-top: 30%;
+    height: 650px; /* Adjust height for mobile view */
+    width: 90%; /* Adjust width for mobile view */
+    border-radius: 30px; /* Adjust border-radius for mobile view */
+  }
+}
+
+.card {
+  background-color: white;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 30px;
+  height: 260px;
+  width: 369px;
+  position: relative;
+  left: 39%;
+  transform: translateX(-40%);
+}
+ 
+@media (max-width: 576px) {
+  .card {
+    border-radius: 10%;
+    height: 200px; /* Adjust height for mobile view */
+    width: 90%; /* Adjust width for mobile view */
+    margin: 10px auto;
+    margin-left: -18px; /* Center and adjust margin for mobile view */
+    left: 0; /* Reset left position for mobile view */
+    transform: none; /* Reset transform for mobile view */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .card {
+    height: 220px; /* Adjust height for tablet view */
+    width: 80%; /* Adjust width for tablet view */
+    margin: 20px auto; /* Center and adjust margin for tablet view */
+    left: 35%; /* Offset from the left for tablet view */
+    transform: translateX(-35%); /* Adjust position to account for the offset */
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    height: 240px; /* Adjust height for laptop view */
+    width: 60%; /* Adjust width for laptop view */
+    margin: 30px auto; /* Center and adjust margin for laptop view */
+    left: 30%;
+    border-radius: 10%;
+    margin-left: 8%; /* Offset from the left for laptop view */
+    transform: translateX(-30%); /* Adjust position to account for the offset */
+  }
+}
+
+
+
+.title{
+  color: #143D64;
+  margin-left: 20%;
+  margin-top: 60px;
+}
+
+.textfield {
+  background-color: aliceblue; /* Default background color */
+  width: 100%; /* Default width for all views */
+}
+
+@media (max-width: 576px) {
+  .textfield {
+    left: 0; 
+    width: 80%; /* Reset left position for mobile view */
+   /* Adjusted width for mobile view */
+    margin-left: 10%; /* Optional: Add margin for better spacing */
+    margin-right: 10%; /* Optional: Add margin for better spacing */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .textfield {
+    left: 10%; /* Adjust left position for tablet view */
+    width: 70%; /* Adjusted width for tablet view */
+  }
+}
+
+@media (min-width: 992px) {
+  .textfield {
+ /* Ensures inputs are displayed inline */
+    width: 65%; /* Adjusted width for each input */
+ /* Adds spacing between inputs */
+  }
+}
+
+.form-button{
+  background-color: aliceblue;
+  margin-left: 46%;
+
+ 
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 5%;
+}
+.form-button:hover {
+  background-color: black;
+  color: white;
+}
+.beautiful-button {
+  position: relative;
+margin-left:40% ;
+  top: -25px; 
+  display: inline-block;
+  background: linear-gradient(to bottom, #1b1c3f, #4a4e91);
+ /* Gradient background */
+  color: white;
+ /* White text color */
+  font-family: "Segoe UI", sans-serif;
+ /* Stylish and legible font */
+  font-weight: bold;
+  font-size: 18px;
+ /* Large font size */
+  border: none;
+ /* No border */
+  border-radius: 30px;
+ /* Rounded corners */
+  padding: 14px 28px;
+ /* Large padding */
+  cursor: pointer;
+ /* Cursor on hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ /* Subtle shadow */
+  animation: button-shimmer 2s infinite;
+  transition: all 0.3s ease-in-out;
+  
+ /* Smooth transition */
+}
+
+/* Hover animation */
+.beautiful-button:hover {
+  background: linear-gradient(to bottom, #2c2f63, #5b67b7);
+  animation: button-particles 1s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+
+/* Click animation */
+.beautiful-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Shimmer animation */
+@keyframes button-shimmer {
+  0% {
+    background-position: left top;
+  }
+
+  100% {
+    background-position: right bottom;
+  }
+}
+
+/* Particle animation */
+@keyframes button-particles {
+  0% {
+    background-position: left top;
+  }
+
+  100% {
+    background-position: right bottom;
+  }
+}
+.url {
+  text-align: center; /* Aligns the text to the center */
+  font-size: 20px; /* Increases the font size, adjust as needed */
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 576px) {
+  .url {
+    font-size: 16px;
+    margin-top: 1%; /* Adjust font size for mobile view */
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  .url {
+    font-size: 18px; /* Adjust font size for tablet view */
+  }
+}
+
+@media (min-width: 992px) {
+  .url {
+    font-size: 22px; /* Adjust font size for laptop view */
+  }
+}
+.ant-input:not(:last-child),
+
+.ant-input-password:not(:last-child) {
+  margin-bottom: 20px; /* Space below each input field */
+}

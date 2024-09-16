@@ -1,0 +1,42 @@
+.white-card {
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for depth */
+    padding: 20px;
+    margin: 20px auto; 
+    height:598px;
+    width: 758px;
+  }
+ 
+  .title{
+    color: #143D64;
+    margin-left: 20%;
+    margin-top: 60px;
+  }
+  .details{
+    margin-top:40px;
+    font-size: 16px;
+    font-weight:normal;
+    text-align: left; 
+    left: 50%;
+    margin-left: 20%;
+    margin-right: auto;
+  }
+  .textfield{
+ left: 20%;
+ background-color: aliceblue;
+ text-align: center;
+
+  }
+
+  .login-button{
+    margin-top:40px;
+    margin-left: 34%;
+    background-color:#143D64;
+    color: aliceblue;
+    font-size: 16px;
+    padding: 20px;
+    width: 30%;
+    height: 9%;
+    border-radius: 4%;
+  }

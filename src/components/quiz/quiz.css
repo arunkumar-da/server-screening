@@ -1,0 +1,142 @@
+.quiz-card {
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  width: 100%; /* Default width for larger screens */
+  max-width: 1370px; /* Limit maximum width */
+  display: flex;
+  flex-direction: column;
+  margin-top: 10%;
+  justify-content: space-between;
+}
+.heart{
+  height: 30%;
+}
+.checkbox {
+  top: 9px;
+  float: left;
+}
+
+.none {
+  margin-right: 75%;
+}
+
+.web {
+  text-align: center;
+  margin-top: -1234; 
+}
+
+.webcam-container {
+  position: relative;
+  display: inline-block;
+}
+@media (max-width: 576px) {
+  .webcam-container {
+    height: 5%;
+    margin-top: 20px; /* Adjusted margin-top for mobile view */
+  }
+}
+.timer {
+  position: absolute;
+  top: 170px; /* Adjust top position as needed */
+  right: 100px; /* Adjust right position as needed */
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px; /* Adjusted padding for smaller screens */
+  font-size: 20px; /* Adjusted font size for smaller screens */
+}
+@media (max-width: 576px) {
+  .timer {
+    top: 130px; /* Adjust top position for mobile */
+    right: 25px; /* Adjust right position for mobile */
+    padding: 8px 16px; /* Adjusted padding for smaller screens */
+    font-size: 16px; /* Adjusted font size for smaller screens */
+  }
+}
+
+.next {
+  border-radius: 50%;
+  margin-left: 50%;
+  display: inline-block;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 70%;
+  margin-top: -10px;
+}
+
+.next span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.next span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.next:hover span {
+  padding-right: 25px;
+}
+
+.next:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.counter {
+  text-align: center;
+  margin-top: -1234; /* This seems incorrect, ensure correct margin value */
+  top: 12344px; /* This seems incorrect, ensure correct margin value */
+}
+
+@media (max-width: 992px) {
+  .web {
+    margin-top: 0; /* Adjusted for tablet view */
+  }
+}
+
+@media (max-width: 768px) {
+  .next {
+    margin-left: 10%; /* Adjusted for laptop view */
+  }
+}
+
+@media (max-width: 576px) {
+  .quiz-card {
+    padding: 10px; /* Adjusted padding for mobile view */
+    margin-top: 120px;
+    height: 750px; /* Adjust height for mobile view */
+    width: 90%; /* Adjust width for mobile view */
+    border-radius: 30px;  /* Adjusted margin-top for better alignment in mobile view */
+  }
+
+  .next {
+    margin-top: 10%;
+    margin-left: 1%; /* Adjusted margin-left for mobile view */
+    width: 80%; /* Full width for mobile view */
+  }
+
+  .timer {
+    padding: 10px; /* Adjusted padding for mobile view */
+    font-size: 20px; /* Adjusted font size for mobile view */
+  }
+  .none{
+    width: 100%;
+    margin-top: 12%;
+  }
+}
