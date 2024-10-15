@@ -10,7 +10,9 @@ import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import '@tensorflow/tfjs';
 import swal from 'sweetalert';
 import { AppContext } from '../form/appcontext/appcontext';
-
+import LinearProgress from '@mui/material/LinearProgress';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 const Quiz = ({ setIsExamCompleted }) => {
   const HeartIcon = () => <span>&#10084;</span>;
   const [hearts, setHearts] = useState(3);
@@ -41,6 +43,8 @@ const Quiz = ({ setIsExamCompleted }) => {
   const [remainingTime, setRemainingTime] = useState(60);
   const [model, setModel] = useState(null);
     const [isUploading, setIsUploading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,22 +52,25 @@ const Quiz = ({ setIsExamCompleted }) => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: true,
-          audio: true,
+          audio: true, // Keep audio true to capture it
         });
-      if (webcamRef.current) {
-        webcamRef.current.srcObject = stream;
+        if (webcamRef.current) {
+          // Create a new MediaStream with only the video track
+          const videoTrack = stream.getVideoTracks()[0];
+          const videoStream = new MediaStream([videoTrack]);
+          webcamRef.current.srcObject = videoStream;
+        }
+      } catch (err) {
+        console.error("Error accessing media devices.", err);
       }
-    } catch (err) {
-      console.error("Error accessing media devices.", err);
-    }
-  };
-  requestPermissions();
+    };
+    requestPermissions();
   }, []);
  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`http://localhost:3007/getData?role=${name}`);
+        const result = await axios.get(`https://www.noraasoft.com:3007/getData?role=${name}`);
         setData(result.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -112,7 +119,7 @@ const Quiz = ({ setIsExamCompleted }) => {
 
   useEffect(() => {
     setShouldRepeat(true);
-    setRemainingTime(60);
+    setRemainingTime(300);
     const timerId = setInterval(() => {
       setRemainingTime((prevTime) => {
         if (prevTime === 0) {
@@ -130,13 +137,18 @@ const Quiz = ({ setIsExamCompleted }) => {
 
   const handleStartCaptureClick = () => {
     if (webcamRef.current && webcamRef.current.video) {
-      const stream = webcamRef.current.video.srcObject;
-      setCapturing(true);
-      mediaRecorderRef.current = new MediaRecorder(stream, {
-        mimeType: 'video/webm',
-      });
-      mediaRecorderRef.current.addEventListener('dataavailable', handleDataAvailable);
-      mediaRecorderRef.current.start();
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => {
+          setCapturing(true);
+          mediaRecorderRef.current = new MediaRecorder(stream, {
+            mimeType: 'video/webm',
+          });
+          mediaRecorderRef.current.addEventListener('dataavailable', handleDataAvailable);
+          mediaRecorderRef.current.start();
+        })
+        .catch(err => {
+          console.error("Error accessing media devices.", err);
+        });
     } else {
       console.error('Webcam is not ready.');
     }
@@ -201,7 +213,7 @@ const Quiz = ({ setIsExamCompleted }) => {
                 // Send warning email
                 const sendWarningEmail = async () => {
                     try {
-                        const response = await axios.post('http://localhost:5000/sendWarningEmail', { name: username });
+                         const response = await axios.post('https://www.noraasoft.com:5000/sendWarningEmail', { name: username });
 
                         console.log(response.data);  // Log response from backend (optional)
                         alert(`Warning email sent successfully for ${username}!`);
@@ -256,7 +268,8 @@ const Quiz = ({ setIsExamCompleted }) => {
       const uploadVideo = async () => {
         const blob = new Blob(recordedChunks, { type: 'video/webm' });
         const formData = new FormData();
-        const uploadUrl = `http://localhost:3011/upload/${username}`;
+         const uploadUrl = `https://www.noraasoft.com:3011/upload/${username}`;
+
         formData.append('file', blob, ' video.webm');
         
         // 'file' should match your server-side handling
@@ -270,11 +283,12 @@ const Quiz = ({ setIsExamCompleted }) => {
            
           });
           console.log(' last Video uploaded successfully!', response); 
-          alert(username);
+          
           if (exit) {
             try{
-
-              await axios.post('http://localhost:5002/sendWarningEmail', { name: username });
+setOpenDialog(true); // Open the dialog
+          setLoading(true); // Start loading
+              await axios.post('https://www.noraasoft.com:5002/sendWarningEmail', { name: username });
             if (response.status === 200) {
 
              navigate('/exit');
@@ -329,8 +343,24 @@ const Quiz = ({ setIsExamCompleted }) => {
     handleNextQuestion();
     handleStopCaptureClick();
     handleDownload();
-    if(exit){
-      navigate('/exit');
+    if (exit) {
+setOpenDialog(true); // Open the dialog
+          setLoading(true); // Start loading
+      try {
+        const sendWarningEmail = async () => {
+          try {
+            const response = await axios.post('https://www.noraasoft.com:5002/sendWarningEmail', { name: username });
+            if (response.status === 200) {
+              navigate('/exit');
+            }
+          } catch (error) {
+            console.error('Error sending email:', error);
+          }
+        };
+        sendWarningEmail();
+      } catch (error) {
+        console.error('Error sending email:', error);
+      }
     }
     
   };
@@ -369,7 +399,7 @@ const Quiz = ({ setIsExamCompleted }) => {
       <div className='web'>
         <div style={{ position: 'relative', width: 'fit-content' }}>
           <Webcam
-            audio={true}
+            audio={false} 
             ref={webcamRef}
             className='camera'
             videoConstraints={videoConstraints}
@@ -440,7 +470,12 @@ const Quiz = ({ setIsExamCompleted }) => {
         </div>
         <button className='timer'>{formatTime(timeLeft)}</button>
       </div>
-      
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+        <DialogContent>
+          <h2>Sending Email...</h2>
+          <LinearProgress />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

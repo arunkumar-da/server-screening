@@ -14,6 +14,7 @@ import axios from 'axios';
 import { Card, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from './appcontext/appcontext';
+
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -52,7 +53,7 @@ const WhiteCard = () => {
 
     try {
       // Send POST request with form data
-      await axios.post('http://localhost:3007/submit', formData, {
+      await axios.post('https://www.noraasoft.com:3007/submit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -63,7 +64,7 @@ const WhiteCard = () => {
       setEmail('');
       setPhonenumber('');
       setFile('');
-      swal("Form submitted successfully");
+      //swal("Form submitted successfully");
  
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -100,9 +101,16 @@ const WhiteCard = () => {
   }, [phonenumber, setuserphonenumber]);
   const navigate = useNavigate();
   const handleClick = async (e) => {
-    e.preventDefault(); // Prevent default behavior of the event (e.g., form submission)
-    await handleSubmit(); // Submit the form data
-    navigate('/rules'); // Navigate to '/rules'
+    e.preventDefault();
+
+    // Check if all fields are filled
+    if (!role || !email || !phonenumber || !skills) {
+      swal("Please fill in all fields before proceeding.");
+      return;
+    }
+
+    await handleSubmit();
+    navigate('/rules');
   };
   return (
     
@@ -122,8 +130,10 @@ const WhiteCard = () => {
         borderRadius: isRoleEntered ? '60%' : '0%', // Apply border radius conditionally
       },
     }}
+    required
   />
   <Input
+    type="email"
     className='textfield'
     value={email}
     onChange={(e) => setEmail(e.target.value)}
@@ -134,8 +144,10 @@ const WhiteCard = () => {
         borderRadius: isEmailEntered ? '30%' : '0%', // Apply border radius conditionally
       },
     }}
+    requires
   />
   <Input
+    type="tel"
     className='textfield'
     value={phonenumber}
     onChange={(e) => setPhonenumber(e.target.value)}
@@ -146,6 +158,7 @@ const WhiteCard = () => {
         borderRadius: isPhonenumberEntered ? '30%' : '0%', // Apply border radius conditionally
       },
     }}
+    required
   />
 </div>
 

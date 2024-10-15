@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Divider from '@mui/material/Divider';
 import './rules.css';
 import Button from '@mui/material/Button';
@@ -10,15 +10,12 @@ import { Card } from 'antd';
 import axios from 'axios';
 import { AppContext } from '../form/appcontext/appcontext';
 import { useNavigate } from 'react-router-dom';
-import LinearProgress from '@mui/material/LinearProgress';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
+
 const RulesComponent = () => {
   const { name } = useContext(AppContext);
   const { username } = useContext(AppContext);
   const navigate = useNavigate();
- const [loading, setLoading] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
+
   useEffect(() => {
    
     localStorage.setItem('testName', name);
@@ -28,19 +25,16 @@ const RulesComponent = () => {
   const storedName = localStorage.getItem('testName');
 
   const handleClick = async () => {
-setOpenDialog(true); // Open the dialog
-    setLoading(true); // Start loading
     try {
-        // Change the endpoint to match the server code
-        await axios.post('https://www.noraasoft.com:5001/sendWarningEmail', { name: username });
-
-        // Navigate to the quiz page after successful response
-        navigate('/quiz');
+      // Send data to server
+      await axios.post('http://69.164.221.175:5001/sendEmailToAllEmployees', { name: username });
+      
+      // Navigate to the quiz page after successful response
+      navigate('/quiz');
     } catch (error) {
-        console.error('Error sending email:', error);
+      console.error('Error sending email:', error);
     }
-};
-
+  };
 
   return (
     <Card className="rules-card">
@@ -91,20 +85,14 @@ setOpenDialog(true); // Open the dialog
         <p className='rp'>
           • Maintain academic honesty. Avoid cheating and unauthorized materials.
         </p>
-        <p className='pl'>6. Exam Security Notice:</p>
+        <p className='pl'>6. </p>
         <p className='rp'>
-          • Switching tags during the exam will result in automatic closure of the exam.
+          • Ensure a stable and reliable internet connection.
         </p>
         <button className='button' onClick={handleClick}>
           Get Started
         </button>
       </div>
- <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <DialogContent>
-          <h2>Please Wait...</h2>
-          <LinearProgress />
-        </DialogContent>
-      </Dialog>
     </Card>
   );
 };
